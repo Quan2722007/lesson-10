@@ -1,0 +1,53 @@
+html {
+    font-family: "Inter";
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    padding: 16px 0;
+    background-color: rgb(234, 234, 234);
+}
+h3 {
+    margin: 0;
+    color: rgb(129, 12, 12);
+}
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+p {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 500;
+}
+.container #box {
+    width: 100%;
+    height: auto;
+    padding: 16px 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 16px;
+}
+.container #box .boxCountries {
+    text-align: center;
+    gap: 20px;
+    box-shadow: 1px 2px 2px 0 rgba(0, 0, 0, 0.618);
+    background-color: white;
+}
+.container #box .boxCountries .img {
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
+}
+.container #box .boxCountries .nameCountry {
+    font-size: 20px;
+    font-weight: 600;
+    color: rgb(0, 0, 0);
+    text-align: center;
+}
