@@ -60,7 +60,7 @@ p {
     opacity: 0.6;
 }
 .container #containerCountries .wrapButton {
-    width: 45%;
+    width: 55%;
     top: 50%;
     display: flex;
     justify-content: space-between;
