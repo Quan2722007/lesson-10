@@ -75,18 +75,37 @@ function checkArray() {
 }
 
 //Bài 5
+const containerCountries = document.getElementById("containerCountries");
+let allCountries = [];
+let filteredCountries = [];
+let currentPage = 1;
+const itemsPerPage = 12;
 function clickButton() {
+    containerCountries.style.display = "flex";
     const API = fetch(
         "https://restcountries.com/v3.1/all?fields=name,capital,flags",
     );
     API.then((data) => data.json())
         .then((dt) => {
-            console.log(dt);
-            const box = document.getElementById("box");
-            let string = "";
-            for (let i = 0; i < dt.length; i++) {
-                let country = dt[i];
-                string += `
+            allCountries = [...dt];
+            filteredCountries = [...allCountries];
+            renderPage();
+        })
+        .catch((error) => {
+            console.error(error);
+        });
+}
+function renderPage() {
+    const countryList = document.getElementById("box");
+    countryList.innerHTML = "";
+
+    const start = (currentPage - 1) * itemsPerPage;
+    const end = start + itemsPerPage;
+    const pageCountry = filteredCountries.slice(start, end);
+
+    let string = "";
+    pageCountry.forEach((country) => {
+        string += `
                 <div class="boxCountries">
                     <img
                     src="${country.flags.png}"
@@ -97,14 +116,59 @@ function clickButton() {
                     <div class="nameCountry">${country.name.common}</div>
                 </div>
                 `;
-            }
-            box.innerHTML = string;
-        })
-        .catch((error) => {
-            console.error(error);
-        });
+    });
+    countryList.innerHTML = string;
+    updatePagigation();
 }
+function updatePagigation() {
+    const nextButton = document.getElementById("next");
+    const prevButton = document.getElementById("prev");
+    const pageNumbers = document.getElementById("numberPage");
 
+    const totalPages = Math.ceil(filteredCountries.length / itemsPerPage);
+    prevButton.disabled = currentPage === 1;
+    nextButton.disabled = currentPage === totalPages;
+
+    let page = "";
+    for (let i = 1; i <= totalPages; i++) {
+        if (
+            i === 1 ||
+            i === totalPages ||
+            (i >= currentPage - 1 && i <= currentPage + 1)
+        ) {
+            page += `<button class="page ${i === currentPage ? "active" : ""}" onclick="goToPage(${i})">${i}</button>`;
+        } else if (i === currentPage - 2 || i === currentPage + 2) {
+            page += `<span>...</span>`;
+        }
+    }
+    pageNumbers.innerHTML = page;
+}
+function goToPage(page) {
+    currentPage = page;
+    renderPage();
+}
+function headerSearch() {
+    const value = document.getElementById("searchInput").value.toLowerCase();
+    filteredCountries = allCountries.filter((country) => {
+        return country.name.common.toLowerCase().includes(value);
+    });
+    currentPage = 1;
+    renderPage();
+}
+document.getElementById("searchInput").addEventListener("input", headerSearch);
+document.getElementById("prev").addEventListener("click", () => {
+    if (currentPage > 1) {
+        currentPage--;
+        renderPage();
+    }
+});
+document.getElementById("next").addEventListener("click", () => {
+    const totalPages = Math.ceil(allCountries.length / itemsPerPage);
+    if (currentPage < totalPages) {
+        currentPage++;
+        renderPage();
+    }
+});
 // Bài 6
 function getIP() {
     const getIP = document.getElementById("get");

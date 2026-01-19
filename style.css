@@ -1,3 +1,4 @@
+/* @import url("family=Gravitas+One&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900"); */
 html {
     font-family: "Inter";
 }
@@ -26,26 +27,101 @@ p {
     font-size: 20px;
     font-weight: 500;
 }
-.container #box {
-    width: 100%;
-    height: auto;
+.container #containerCountries {
+    width: 90%;
+    display: none;
+    justify-content: center;
+    flex-direction: column;
+    gap: 30px;
+    align-items: center;
+    position: relative;
+}
+.container #containerCountries .searchBar {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 400px;
+    border-radius: 30px;
+    padding: 10px 16px;
+    border: 1px solid gray;
+    background-color: white;
+}
+.container #containerCountries .searchBar input {
+    font-size: 1.2rem;
+    font-weight: 400;
+    width: 85%;
+    outline: none;
+    border: 0;
+    background-color: transparent;
+}
+.container #containerCountries .searchBar .icon {
+    width: 32px;
+    height: 32px;
+    opacity: 0.6;
+}
+.container #containerCountries .wrapButton {
+    width: 45%;
+    top: 50%;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 100px;
+}
+.container #containerCountries .wrapButton button {
+    font-family: "Gravitas One";
+    font-weight: 500;
+    width: 50px;
+    height: 50px;
+    border-radius: 8px;
+    border: 0;
+    font-size: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(154, 154, 154);
+    color: white;
+    cursor: pointer;
+    box-shadow: 4px 6px 6px 1px rgba(0, 0, 0, 0.4);
+}
+.container #containerCountries .wrapButton #numberPage {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+.container #containerCountries .wrapButton #numberPage .page {
+    font-size: 1.7rem;
+    font-family: "Inter";
+}
+.container #containerCountries .wrapButton #numberPage span {
+    display: flex;
+    align-items: center;
+    font-size: 2.5rem;
+}
+.container #containerCountries .wrapButton button:hover {
+    background-color: rgba(212, 212, 212, 0.63);
+}
+.container #containerCountries #box {
+    width: 70%;
+    height: 610px;
     padding: 16px 20px;
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
     gap: 16px;
 }
-.container #box .boxCountries {
+.container #containerCountries #box .boxCountries {
+    display: flex;
+    flex-direction: column;
+    height: 180px;
     text-align: center;
-    gap: 20px;
+    gap: 10px;
     box-shadow: 1px 2px 2px 0 rgba(0, 0, 0, 0.618);
     background-color: white;
 }
-.container #box .boxCountries .img {
+.container #containerCountries #box .boxCountries .img {
     width: 100%;
     height: 120px;
     object-fit: cover;
 }
-.container #box .boxCountries .nameCountry {
+.container #containerCountries #box .boxCountries .nameCountry {
     font-size: 20px;
     font-weight: 600;
     color: rgb(0, 0, 0);
