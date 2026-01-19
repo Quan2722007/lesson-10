@@ -100,7 +100,7 @@ p {
     background-color: rgba(212, 212, 212, 0.63);
 }
 .container #containerCountries #box {
-    width: 70%;
+    width: 80%;
     height: 610px;
     padding: 16px 20px;
     display: grid;
